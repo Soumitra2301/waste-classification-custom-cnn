@@ -1,0 +1,9 @@
+tensorflow==2.18.0
+keras==3.8.0
+numpy
+matplotlib
+seaborn
+scikit-learn
+opencv-python
+pandas
+lime
