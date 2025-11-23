@@ -10,7 +10,7 @@
 
 ## 🚀 Live Demo on Kaggle (No Local Setup – Takes 2 Minutes!)
 
-**Video Tutorial** (1:50):  
+**Video Tutorial**:  
 → [Watch Step-by-Step Live Testing on Kaggle](https://drive.google.com/file/d/1cpObNzgsrWvZoNQWnMGSLKlTAuijgHB0/view?usp=drive_link)
 
 ### Easy Text Guide – Run the Model Yourself on Kaggle
