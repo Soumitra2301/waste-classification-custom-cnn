@@ -1,37 +1,60 @@
-# Live Testing Demo
+# Cell 1: Load .h5 or .keras model + test generator + predictions (run only once)
+import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
-model = load_model('saved_models/custom_cnn_best.keras')
+# UPDATE THIS PATH TO YOUR UPLOADED MODEL
+model_path = '/kaggle/input/custom-cnn-test/keras/default/1/custom_cnn_waste_classifier.h5'  # or .h5
+model = load_model(model_path)
+
+# Class names
 class_names = ['Organic', 'Recyclable']
 
-def predict_image(img_path):
-    img = load_img(img_path, target_size=(224, 224))
-    x = img_to_array(img) / 255.0
-    x = np.expand_dims(x, axis=0)
-    pred = model.predict(x)[0][0]
-    label = class_names[1] if pred > 0.5 else class_names[0]
-    conf = pred if pred > 0.5 else 1 - pred
-    return img, label, conf
-
-# Demo on 6 images
-demo_folder = 'demo/input_images'
-images = [f for f in os.listdir(demo_folder) if f.endswith(('.jpg', '.png'))]
-
-plt.figure(figsize=(15, 10))
-for i, img_file in enumerate(images[:6]):
-    path = os.path.join(demo_folder, img_file)
-    img, label, conf = predict_image(path)
-    plt.subplot(2, 3, i+1)
+# --------------------- LIVE PREDICTION FUNCTION ---------------------
+def predict_waste_image(image_path):
+    # Load and preprocess image
+    img = load_img(image_path, target_size=(224, 224))
+    img_array = img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0) / 255.0  # Normalize
+    
+    # Predict
+    prediction = model.predict(img_array)[0][0]
+    
+    # Determine class and confidence
+    if prediction < 0.5:
+        predicted_class = class_names[0]
+        confidence = 1 - prediction
+    else:
+        predicted_class = class_names[1]
+        confidence = prediction
+    
+    # Display result
+    plt.figure(figsize=(8, 6))
     plt.imshow(img)
-    color = 'green' if 'Organic' in label or 'Recyclable' in label else 'red'
-    plt.title(f'{label}\nConfidence: {conf:.4f}', color=color, fontsize=14)
+    plt.title(f'Prediction: {predicted_class}\nConfidence: {confidence:.4f}', 
+              fontsize=18, color='green' if confidence > 0.8 else 'red')
     plt.axis('off')
+    plt.show()
+    
+    print(f"Predicted: {predicted_class} | Confidence: {confidence:.4f}")
+    
+    return predicted_class, confidence
 
-plt.suptitle('Custom CNN Live Testing Demo (92% Test Accuracy)', fontsize=18)
-plt.tight_layout()
-plt.savefig('demo/output_predictions.png')
-plt.show()
+# --------------------- TEST ON YOUR IMAGES ---------------------
+# Example: replace with your uploaded image paths
+test_image_paths = [
+    '/kaggle/input/waste-classification-data/DATASET/TEST/O/O_12823.jpg'
+]
+
+# Run predictions
+for path in test_image_paths:
+    if os.path.exists(path):
+        print(f"\nTesting: {os.path.basename(path)}")
+        predict_waste_image(path)
+    else:
+        print(f"Image not found: {path}")
