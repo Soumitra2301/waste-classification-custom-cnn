@@ -1,8 +1,11 @@
---Download Final Model Weights (Large Files)
+## Download Final Model Weights (Large Files >100 MB)
 
-Model weights are hosted here:
+GitHub blocks files larger than 100 MB, so the model weights are hosted on Google Drive:
 
-- [custom_cnn_waste_classifier.keras](https://drive.google.com/file/d/1eTrUXoKi-WHL1i3qkC7TGmG-vL98p3rR/view?usp=drive_link) (~220 MB)
-- [custom_cnn_waste_classifier.h5](https://drive.google.com/file/d/1vTbM7_js01g_3hDPoV9moEBo4nY6ECU5/view?usp=sharing) (~220 MB)
+- [custom_cnn_waste_classifier.keras](https://drive.google.com/uc?export=download&id=1eTrUXoKi-WHL1i3qkC7TGmG-vL98p3rR) (~220 MB)  
+- [custom_cnn_waste_classifier.h5](https://drive.google.com/uc?export=download&id=1vTbM7_js01g_3hDPoV9moEBo4nY6ECU5) (~220 MB)
 
-Download any one of the 2 saved models.
+**How to download instantly (no confirmation page):**
+Just click the links above – they will start downloading immediately.
+
+(If Google shows a virus-scan warning for large files, click “Download anyway” – it’s safe, it’s just Google being cautious.)
