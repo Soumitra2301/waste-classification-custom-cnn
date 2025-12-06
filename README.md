@@ -29,6 +29,21 @@
 
 **That’s it — live testing in seconds!**
 
+## Or test the model deployed on Hugging Face 🤗
+→ Follow this link [Hugging Face](https://huggingface.co/spaces/Shomitra/waste-classifier-demo)
+
+## Sample Interface & Predictions
+
+### 🔹 1. Web Interface (Hugging Face App)
+![Web Interface](asset/web_interface.png)
+
+### 🔹 2. Organic Waste Classification Sample
+![Organic Waste Sample](asset/organic_sample.png)
+
+### 🔹 3. Recyclable Waste Classification Sample
+![Recyclable Waste Sample](asset/recyclable_sample.png)
+
+
 **Key Finding**: A simple custom CNN trained from scratch beats large transfer-learning models on noisy real-world waste images!
 
 Happy classifying! ♻️
